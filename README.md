@@ -1,2 +1,2 @@
 # COSMOS
-by Jun Kim, Sam Lai, and Nick Padmanabhan
+by Jun Kim, Sam Lai, and Nick Padmanabhan | Supervised by: John Guibas
