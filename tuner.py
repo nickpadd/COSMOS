@@ -1,13 +1,9 @@
 from helper import *
-from bar import *
 import speech_recognition as sr
 from time import sleep
 
 r = sr.Recognizer()
 m = sr.Microphone()
-
-volume = 5
-octave = 1
 
 def tuner():
 	note = ""
@@ -42,8 +38,9 @@ def tuner():
 	   else:
 	   	if(note != None):
 	         print("You said '" + note + "'. Make sure you say a note A through G!")
-	         sleep(0.5)
+	         sleep(1.5)
 	   	else:
 	         print("Make sure you say a note A through G!")
+	         sleep(1.5)
 
 	   spacer()

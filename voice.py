@@ -1,22 +1,22 @@
 from helper import *
 import speech_recognition as sr
-from time import sleep
+from bar import *
 
 r = sr.Recognizer()
 m = sr.Microphone()
 
-def synthesizer():
-	melody = ""
+def test():
+	option = ""
 	while(True):
 	   try:
 	       with m as source: r.adjust_for_ambient_noise(source)
-	       print("Say a series of notes A - G")
+	       print("Say something.")
 	       with m as source: audio = r.listen(source)
 	       try:
 	           value = r.recognize_google(audio)
 	           show_progress()
-	           melody = "{}".format(value)
-	           #print("raw: " + melody)
+	           option = "{}".format(value)
+	           print(option)
 	       except sr.UnknownValueError:
 	       	show_progress()
 	       	print("Didn't hear you properly.")
@@ -27,14 +27,4 @@ def synthesizer():
 	       pass
 	       break
 
-	   if(verify(melody)):
-	   	return melody
-	   	break
-	   else:
-	   	if(melody != None):
-	         print("You said '" + melody + "'. Make sure you say a series of notes A through G!")
-	         sleep(1.5)
-	   	else:
-	         print("Make sure you say a series of notes A through G!")
-
-	   spacer()
+test()

@@ -1,15 +1,21 @@
+from light import *
 from bar import *
+from visual import *
+from settings import *
+from time import sleep
+from settings_helper import *
 
+#Frequency reference
 keys = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
 values = [440.0, 494.0, 523.0, 587.0, 659.0, 698.0, 784.0]
 dictionary = dict(zip(keys,values))
+dictionary2 = dict(zip(values,keys))
 
 #################################
 ########## S W I T C H ##########
 #################################
 
 def show_progress():
-    from time import sleep
 
     items = list(range(0, 57))
     l = len(items)
@@ -18,11 +24,16 @@ def show_progress():
     for i, item in enumerate(items):
         sleep(0.015)
         progress_bar(i + 1, l, prefix = 'Processing:', suffix = 'Complete', length = 50)
+    spacer()
 
 def check_valid(function):
     if(function.lower() == "tuner"):
         return True
     elif(function.lower() == "synthesizer"):
+        return True
+    elif(function.lower() == "settings"):
+        return True
+    elif(function.lower() == "quit"):
         return True
     else:
         return False
@@ -94,6 +105,8 @@ def noise(frequency, volume = 1.0, duration = 10.0):
     d = duration
     f = frequency
 
+    terminal_display(dictionary2.get(f))
+
     samples = (np.sin(2*np.pi*np.arange(fs*d)*f/fs)).astype(np.float32)
 
     stream = p.open(format=pyaudio.paFloat32,
@@ -110,9 +123,8 @@ def noise(frequency, volume = 1.0, duration = 10.0):
     p.terminate()
 
 def visual(frequency):
-    note = dictionary.get(frequency)
-    #do something
-    #hook to arduno
+    note = dictionary2.get(frequency)
+    make_light(note)
 
 def parse_tuner_frequency(note):
     return dictionary.get(note)
@@ -130,11 +142,11 @@ def parse_input(melody):
         note = correct_pronunciation(note)
     for index,note in enumerate(melody):
         melody[index] = melody[index].lower()
-    print(melody)
     return melody
 
 def sound(melody):
     for note in melody:
+        spacer()
         noise(parse_tuner_frequency(note), 1.0, 1.5)
 
 def verify(melody):
@@ -154,9 +166,31 @@ def verify(melody):
     return True
 
 #################################
+######## S E T T I N G S ########
+#################################
+
+#moved to settings_helper.py
+
+#################################
 ############ M I S C ############
 #################################
 
 def spacer():
-    for i in range(1,20):
+    for i in range(1,100):
         print("")
+
+def terminal_display(note):
+    if(note == "a"):
+        print(A(), end = "\r", flush = True)
+    if(note == "b"):
+        print(B(), end = "\r", flush = True)
+    if(note == "c"):
+        print(C(), end = "\r", flush = True)
+    if(note == "d"):
+        print(D(), end = "\r", flush = True)
+    if(note == "e"):
+        print(E(), end = "\r", flush = True)
+    if(note == "f"):
+        print(F(), end = "\r", flush = True)
+    if(note == "g"):
+        print(G(), end = "\r", flush = True)

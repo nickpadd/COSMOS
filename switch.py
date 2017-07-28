@@ -1,7 +1,6 @@
 from helper import *
 import speech_recognition as sr
 from time import sleep
-import music21
 
 r = sr.Recognizer()
 m = sr.Microphone()
@@ -11,7 +10,7 @@ def switch():
 	while(True):
 	   try:
 	       with m as source: r.adjust_for_ambient_noise(source)
-	       print("Do you want to use the tuner or the synthesizer?")
+	       print("Tuner, synthesizer, settings, or quit?")
 	       with m as source: audio = r.listen(source)
 	       try:
 	           value = r.recognize_google(audio)
@@ -31,7 +30,7 @@ def switch():
 	       return function
 	       break
 	   else:
-	       print("You said '" + function + ".' Make sure you say either tuner or synthesizer!")
-	       sleep(0.5)
+	       print("You said '" + function + ".' Make sure you say either tuner, synthesizer, or settings!")
+	       sleep(1.5)
 
 	   spacer()
