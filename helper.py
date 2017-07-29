@@ -114,7 +114,7 @@ def noise(frequency, volume = 1.0, duration = 10.0):
                     rate=fs,
                     output=True)
 
-    #visual(f)
+    #visual(f) #MAKE SURE TO RE-ENABLE LATER
     stream.write(v*samples)
 
     stream.stop_stream()
