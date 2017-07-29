@@ -1,4 +1,4 @@
-from light import *
+#	from light import *
 from bar import *
 from visual import *
 from settings import *
@@ -114,7 +114,7 @@ def noise(frequency, volume = 1.0, duration = 10.0):
                     rate=fs,
                     output=True)
 
-    visual(f)
+    #visual(f)
     stream.write(v*samples)
 
     stream.stop_stream()
