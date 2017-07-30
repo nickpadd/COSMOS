@@ -16,7 +16,6 @@ def tuner():
 	           value = r.recognize_google(audio)
 	           show_progress()
 	           note = "{}".format(value)
-	           #print("raw: " + melody)
 	       except sr.UnknownValueError:
 	       	show_progress()
 	       	print("Didn't hear you properly.")
@@ -37,8 +36,10 @@ def tuner():
 	       parse_command(note)
 	   else:
 	   	if(note != None):
-	         print("You said '" + note + "'. Make sure you say a note A through G!")
-	         sleep(1.5)
+	   		if(note != True):
+	   			if(note != False):
+			         print("You said '" + note + "'. Make sure you say a note A through G!")
+			         sleep(1.5)
 	   	else:
 	         print("Make sure you say a note A through G!")
 	         sleep(1.5)

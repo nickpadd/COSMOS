@@ -1,11 +1,6 @@
-from time import sleep
 import speech_recognition as sr
 
 #Settings
-global volume #max 10
-global octave #2-6
-global tempo #30-180
-
 volume = 5
 octave = 4
 tempo = 120
@@ -157,9 +152,9 @@ def correct_setting(setting):
     return setting.lower()
 
 def change_tempo(setting):
+    global tempo
     if(len(setting) == 2):
         if((int(correct_number(setting[1])) >= 30) and (int(correct_number(setting[1])) <= 180)):
-            global tempo
             tempo = int(correct_number(setting[1]) + correct_number(setting[2]))
         else:
             print("Min tempo is 30!")
@@ -175,20 +170,19 @@ def change_tempo(setting):
             print("Max tempo is 180!")
 
 def change_octave(setting):
+    global octave
     if(len(setting) == 2):
-        if((int(correct_number(setting[1])) >= 2) and (int(correct_number(setting[1])) <= 6)):
-            global octave
+        if((int(correct_number(setting[1])) >= 3) and (int(correct_number(setting[1])) <= 6)):
             octave = int(correct_number(setting[1]) + correct_number(setting[2]))
         else:
-            print("Min octave is 2 and max octave is 6!")
+            print("Min octave is 3 and max octave is 6!")
 
 def change_volume(setting):
+	global volume
 	if(len(setting) == 2):
-		global volume
 		volume = int(correct_number(setting[1]))
 	elif(len(setting) == 3):
 		if(int(correct_number(setting[1]) + correct_number(setting[2])) == 10):
-			#global volume
 			volume = int(correct_number(setting[1]) + correct_number(setting[2]))
 		else:
 			print("Max volume is 10!")

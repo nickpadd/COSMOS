@@ -10,7 +10,7 @@ def start():
         type = switch()
 
         if(type == "tuner"):
-            noise(parse_tuner_frequency(tuner()))
+            noise_tuner(parse_tuner_frequency(tuner()))
 
         elif(type == "synthesizer"):
             sound(parse_input(synthesizer()))
