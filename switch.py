@@ -23,8 +23,9 @@ def switch():
 	       	show_progress()
 	       	print("Error")
 	   except KeyboardInterrupt:
-	       pass
-	       break
+	       print("\nExiting...")
+	       sleep(0.75)
+	       quit()
 
 	   if(check_valid(function)):
 	       return function

@@ -1,6 +1,5 @@
 from time import sleep
 import speech_recognition as sr
-from settings_helper import *
 
 #Settings
 global volume #max 10
@@ -106,7 +105,7 @@ def spacer():
     for i in range(1,100):
         print("")
 
-#BELOW METHOD COMES FIRST
+#THIS METHOD COMES FIRST
 def do_settings():
     show_settings()
     if(initial_check()):
@@ -166,13 +165,11 @@ def change_tempo(setting):
             print("Min tempo is 30!")
     elif(len(setting) == 3):
         if(int(correct_number(setting[1]) + correct_number(setting[2])) >= 30):
-            #global tempo
             tempo = int(correct_number(setting[1]) + correct_number(setting[2]))
         else:
             print("Min tempo is 30!")
     elif(len(setting) == 4):
         if(correct_number(int(setting[1]) + correct_number(setting[2]) + correct_number(setting[3])) <= 180):
-            #global tempo
             tempo = int(correct_number(setting[1]) + correct_number(setting[2]) + correct_number(setting[3]))
         else:
             print("Max tempo is 180!")
@@ -215,7 +212,7 @@ def correct_number(input):
 		return "8"
 	elif(input == "nine"):
 		return "9"
-	elif(input == "ten"):
-		return "10"
+	elif(input == "zero"):
+		return "0"
 	else:
 		return input

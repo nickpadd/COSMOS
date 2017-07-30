@@ -1,9 +1,8 @@
-#	from light import *
+from light import *
 from bar import *
 from visual import *
 from settings import *
 from time import sleep
-from settings_helper import *
 
 #Frequency reference
 keys = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
@@ -81,12 +80,6 @@ def correct_pronunciation(note):
         else:
             return False
 
-def ask_octave():
-    print("hi")
-
-def ask_tempo():
-    print("hi")
-
 def check_valid_note(note):
     if(isinstance(note, str)):
         if(len(note) == 1):
@@ -94,15 +87,18 @@ def check_valid_note(note):
     else:
         return False
 
-def noise(frequency, volume = 1.0, duration = 10.0):
+#Default 2 seconds
+def noise(frequency = 440, duration = 2.0):
     import pyaudio
     import numpy as np
 
     p = pyaudio.PyAudio()
 
-    v = volume
+    #DIVIDE DURATION BY 4 (SECONDS)
+
+    v = volume / 10
     fs = 44100
-    d = duration
+    d = (60 / tempo) * 4
     f = frequency
 
     terminal_display(dictionary2.get(f))
@@ -147,7 +143,7 @@ def parse_input(melody):
 def sound(melody):
     for note in melody:
         spacer()
-        noise(parse_tuner_frequency(note), 1.0, 1.5)
+        noise(parse_tuner_frequency(note), 1.5)
 
 def verify(melody):
     good = True
