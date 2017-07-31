@@ -8,6 +8,10 @@ values = [440.0, 494.0, 523.0, 587.0, 659.0, 698.0, 784.0]
 dictionary = dict(zip(keys,values))
 dictionary2 = dict(zip(values,keys))
 
+keys = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+values = [[220.0, 277.2, 329.6], [246.9, 311.1, 370.0], [261.6, 329.6, 392.0], [293.7, 370.0, 440.0], [329.6, 415.3, 493.9], [349.2, 440.0, 523.3], [392.0, 493.9, 587.3]]
+triad_dictionary = dict(zip(keys,values))
+
 #################################
 ######## S E T T I N G S ########
 #################################
@@ -236,7 +240,7 @@ def show_progress():
 
     progress_bar(0, l, prefix = 'Progress:', suffix = 'Complete', length = 50)
     for i, item in enumerate(items):
-        sleep(0.012)
+        sleep(0.011)
         progress_bar(i + 1, l, prefix = 'Processing:', suffix = 'Complete', length = 50)
     spacer()
 
@@ -244,6 +248,8 @@ def check_valid(function):
     if(function.lower() == "tuner"):
         return True
     elif(function.lower() == "synthesizer"):
+        return True
+    elif(function.lower() == "triad"):
         return True
     elif(function.lower() == "settings"):
         return True
@@ -416,6 +422,56 @@ def verify(melody):
             return False
             break
     return True
+
+#################################
+########### T R I A D ###########
+#################################
+
+def noise_triad(frequency):
+    import pyaudio
+    import numpy as np
+
+    p = pyaudio.PyAudio()
+
+    v = volume / 10
+    fs = 44100
+    d = 2.0
+
+    if(octave == 4):
+        f = frequency
+    elif(octave == 3):
+        f = frequency / 2
+    elif(octave == 5):
+        f = frequency * 2
+    elif(octave == 6):
+        f = frequency * 4
+
+    samples = (np.sin(2*np.pi*np.arange(fs*d)*f/fs)).astype(np.float32)
+
+    stream = p.open(format=pyaudio.paFloat32,
+                    channels=1,
+                    rate=fs,
+                    output=True)
+
+    stream.write(v*samples)
+
+    stream.stop_stream()
+    stream.close()
+
+    p.terminate()
+
+def play_triad(base):
+    spacer()
+    print("Playing a(n) " + base.upper() + " triad...")
+    triad = triad_dictionary.get(base)
+    for frequency in triad:
+        noise_triad(frequency)
+
+    counter = 0
+    for frequency in reversed(triad):
+        if(counter > 0):
+            noise_triad(frequency)
+        counter += 1
 
 #################################
 ############ M I S C ############

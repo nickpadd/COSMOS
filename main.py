@@ -2,6 +2,7 @@ from tuner import *
 from synthesizer import *
 from switch import *
 from helper import *
+from triad import *
 
 def start():
 
@@ -19,6 +20,9 @@ def start():
             cont = parse_settings(do_settings())
             while(cont):
                 cont = parse_settings(do_settings())
+
+        elif(type == "triad"):
+        		play_triad(triad())
 
         elif(type == "quit"):
             print("Exiting...")
