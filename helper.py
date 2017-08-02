@@ -247,6 +247,8 @@ def show_progress():
 def check_valid(function):
     if(function.lower() == "tuner"):
         return True
+    elif(function.lower() == "okay apollo"):
+        return True
     elif(function.lower() == "synthesizer"):
         return True
     elif(function.lower() == "triad"):
@@ -477,22 +479,36 @@ def play_triad(base):
 ############ M I S C ############
 #################################
 
+def opener():
+    print("\t\t\t\t\t\t\t     _             __      _                      _   _           __             _ ")
+    print("\t\t\t\t\t\t\t    | |           | _|    / \     _ __     ___   | | | |   ___   |_ |           | |")
+    print("\t\t\t\t\t\t\t    | |_____ _____| |    / _ \   | '_ \   / _ \  | | | |  / _ \   | |_____ _____| |")
+    print("\t\t\t\t\t\t\t    | |_____|_____| |   / ___ \  | |_) | | (_) | | | | | | (_) |  | |_____|_____| |")
+    print("\t\t\t\t\t\t\t    | |           | |  /_/   \_\ | .__/   \___/  |_| |_|  \___/   | |           | |")
+    print("\t\t\t\t\t\t\t    |_|    _      |__|           |_|                             |__|_          |_|")
+    print("\t\t\t\t\t\t\t     _ __ (_) ___| | __             ___  __ _ _ __ ___              (_)_   _ _ __  ")
+    print("\t\t\t\t\t\t\t    | '_ \| |/ __| |/ /            / __|/ _` | '_ ` _ \             | | | | | '_ \ ")
+    print("\t\t\t\t\t\t\t    | | | | | (__|   <             \__ \ (_| | | | | | |            | | |_| | | | |")
+    print("\t\t\t\t\t\t\t    |_| |_|_|\___|_|\_\            |___/\__,_|_| |_| |_|           _/ |\__,_|_| |_|")
+    print("\t\t\t\t\t\t\t                                                                  |__/             ")
+    sleep(1.25)
+
 def spacer():
     for i in range(1,100):
         print("")
 
 def terminal_display(note):
     if(note == "a"):
-        print(A(), end = "\r", flush = True)
+        print(A())
     if(note == "b"):
-        print(B(), end = "\r", flush = True)
+        print(B())
     if(note == "c"):
-        print(C(), end = "\r", flush = True)
+        print(C())
     if(note == "d"):
-        print(D(), end = "\r", flush = True)
+        print(D())
     if(note == "e"):
-        print(E(), end = "\r", flush = True)
+        print(E())
     if(note == "f"):
-        print(F(), end = "\r", flush = True)
+        print(F())
     if(note == "g"):
-        print(G(), end = "\r", flush = True)
+        print(G())

@@ -6,27 +6,33 @@ from triad import *
 
 def start():
 
+    opener()
+
     while(True):
         spacer()
-        type = switch()
+        if(switch(False) == "okay apollo"):
+            print("")
+            spacer()
+            type = switch(True)
+            spacer()
 
-        if(type == "tuner"):
-            noise_tuner(parse_tuner_frequency(tuner()))
+            if(type == "tuner"):
+                noise_tuner(parse_tuner_frequency(tuner()))
 
-        elif(type == "synthesizer"):
-            sound(parse_input(synthesizer()))
+            elif(type == "synthesizer"):
+                sound(parse_input(synthesizer()))
 
-        elif(type == "settings"):
-            cont = parse_settings(do_settings())
-            while(cont):
+            elif(type == "settings"):
                 cont = parse_settings(do_settings())
+                while(cont):
+                    cont = parse_settings(do_settings())
 
-        elif(type == "triad"):
-        		play_triad(triad())
+            elif(type == "triad"):
+            		play_triad(triad())
 
-        elif(type == "quit"):
-            print("Exiting...")
-            sleep(0.75)
-            quit()
+            elif(type == "quit"):
+                print("Exiting...")
+                sleep(0.75)
+                quit()
 
-start()
+start()                                                                            
